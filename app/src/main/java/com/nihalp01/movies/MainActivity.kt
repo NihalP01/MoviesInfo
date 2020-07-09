@@ -1,0 +1,60 @@
+package com.nihalp01.movies
+
+import android.os.Bundle
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.nihalp01.movies.UI.Fragment.*
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+    private val onNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_popular -> {
+                    val fragment = FragmentPopular()
+                    addFragment(fragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_latest -> {
+                    val fragment = FragmentLatest()
+                    addFragment(fragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_topRated -> {
+                    val fragment = FragmentTopRated()
+                    addFragment(fragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_upcoming -> {
+                    val fragment = FragmentUpcoming()
+                    addFragment(fragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_about -> {
+                    val fragment = FragmentAbout()
+                    addFragment(fragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
+
+    fun addFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+            .replace(R.id.content, fragment, fragment.javaClass.simpleName)
+            .commit()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        val fragment = FragmentLatest()
+        addFragment(fragment)
+    }
+}
