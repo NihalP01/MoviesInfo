@@ -35,9 +35,9 @@ class FragmentPopular : Fragment() {
 
             override fun onResponse(call: Call<PopularMovies>, response: Response<PopularMovies>) {
                 if (response.isSuccessful) {
-                    myProgressbar.visibility = View.GONE
-                    recyclerView.layoutManager = LinearLayoutManager(context)
-                    recyclerView.adapter =
+                    myProgressbar?.visibility = View.GONE
+                    recyclerView?.layoutManager = LinearLayoutManager(context)
+                    recyclerView?.adapter =
                         context?.let { MoviesAdapter(it, response.body()!!.results) }
                 }
             }
