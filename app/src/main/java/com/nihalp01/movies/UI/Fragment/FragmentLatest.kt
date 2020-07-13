@@ -37,7 +37,7 @@ class FragmentLatest: Fragment() {
                     my_progressbar_latest?.visibility = View.GONE
                     recyclerView_latest?.apply {
                         setHasFixedSize(true)
-                        adapter = MoviesAdapter(context, response.body()!!.results)
+                        adapter = response.body()!!.results.let { MoviesAdapter(context, it) }
                         layoutManager = LinearLayoutManager(context)
                     }
                 }

@@ -22,7 +22,7 @@ class MovieDescription : AppCompatActivity() {
         setContentView(R.layout.movie_overview)
 
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        val call = request.getLatest(getString(R.string.api_key))
+        val call = request.getCast(getString(R.string.api_key))
 
         val intent = intent
 
@@ -46,7 +46,7 @@ class MovieDescription : AppCompatActivity() {
                     my_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(context, 2)
-                        adapter = response.body()!!.MovieCastList?.let { CastAdapter(context, it) }
+                        adapter = CastAdapter(response.body()!!.MovieCastList)
                     }
                 }
             }

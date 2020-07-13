@@ -2,6 +2,7 @@ package com.nihalp01.movies.Network.API
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TmdbEndpoints {
@@ -13,4 +14,6 @@ interface TmdbEndpoints {
     fun getLatest(@Query("api_key") key: String) : Call<Movies>
     @GET("/3/movie/upcoming")
     fun getUpcoming(@Query("api_key") key: String) : Call<Movies>
+    @GET("/movie/{movie_id}/credits")
+    fun getCast(@Query("api_key") key: String, @Path("movie_id") movieId: String) : Call<Movies>
 }
