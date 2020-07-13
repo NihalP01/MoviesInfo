@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.nihalp01.movies.Network.API.Cast
 import com.nihalp01.movies.Network.API.Result
 import com.nihalp01.movies.R
 

@@ -33,6 +33,7 @@ class CastAdapter(private val context: Context, private val castList: List<Cast>
 
         @SuppressLint("SetTextI18n")
         fun bind(castlist: Cast) {
+            Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w500${castlist.profile_path}").into(image)
             name.text = "Name: ${castlist.name}"
             character.text = "Character: ${castlist.character}"
             gender.text = "Gender: ${castlist.gender}"

@@ -3,14 +3,10 @@ package com.nihalp01.movies.UI
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.nihalp01.movies.Network.API.Cast
 import com.nihalp01.movies.Network.API.Movies
 import com.nihalp01.movies.Network.API.TmdbEndpoints
 import com.nihalp01.movies.Network.ServiceBuilder
@@ -50,7 +46,7 @@ class MovieDescription : AppCompatActivity() {
                     my_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(context, 2)
-                        adapter = CastAdapter(context, response.body()!!.MovieCastList)
+                        adapter = response.body()!!.MovieCastList?.let { CastAdapter(context, it) }
                     }
                 }
             }
