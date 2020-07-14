@@ -3,6 +3,7 @@ package com.nihalp01.movies.UI
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,11 +29,15 @@ class MoviesAdapter(private val context: Context, private val movies: List<Resul
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val list: Result = movies[position]
         holder.itemView.setOnClickListener {
-            onItemClicked?.invoke(movies[position])
+            //onItemClicked?.invoke(movies[position])
             val intent = Intent(context, MovieDescription::class.java)
-            intent.putExtra("movie_details", list.overview)
+            /*intent.putExtra("movie_details", list.overview)
             intent.putExtra("title", list.title)
-            intent.putExtra("movie_poster", list.poster_path)
+            intent.putExtra("movie_poster", list.poster_path)*/
+            //intent.putExtra("movie_id", list.id)
+            val bundle : Bundle = Bundle()
+            bundle.putSerializable("result", list)
+            intent.putExtras(bundle)
             context.startActivity(intent)
         }
         return holder.bind(movies[position])
