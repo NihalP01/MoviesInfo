@@ -44,11 +44,15 @@ class MovieDescription : AppCompatActivity() {
 
             override fun onResponse(call: Call<CastList>, response: Response<CastList>) {
                 if (response.isSuccessful) {
+                    Toast.makeText(this@MovieDescription, "Working", Toast.LENGTH_SHORT).show()
                     my_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(context, 2)
-                        adapter = CastAdapter(response.body()!!.result)
+                        adapter = response.body()?.result?.let { CastAdapter(it) }
                     }
+                }
+                else{
+                    Toast.makeText(this@MovieDescription, "Error", Toast.LENGTH_SHORT).show()
                 }
             }
         })
