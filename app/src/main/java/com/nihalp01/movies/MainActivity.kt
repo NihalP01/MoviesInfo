@@ -10,6 +10,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        val fragment = FragmentLatest()
+        addFragment(fragment)
+    }
+
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -48,13 +56,5 @@ class MainActivity : AppCompatActivity() {
             .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
             .replace(R.id.content, fragment, fragment.javaClass.simpleName)
             .commit()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        val fragment = FragmentLatest()
-        addFragment(fragment)
     }
 }

@@ -1,7 +1,7 @@
 package com.nihalp01.movies.Network.API
 
 
-data class PopularMovies(
+data class Movies(
     val results: List<Result>
 )
 
