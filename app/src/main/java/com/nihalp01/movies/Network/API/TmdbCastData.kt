@@ -1,7 +1,7 @@
 package com.nihalp01.movies.Network.API
 
 data class CastList(
-    val result: List<Cast>
+    val cast: List<Cast>
 )
 
 data class Cast(

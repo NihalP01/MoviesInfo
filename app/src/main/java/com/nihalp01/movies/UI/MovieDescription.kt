@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.nihalp01.movies.Network.API.CastList
+import com.nihalp01.movies.Network.API.Result
 import com.nihalp01.movies.Network.API.TmdbEndpoints
 import com.nihalp01.movies.Network.ServiceBuilder
 import com.nihalp01.movies.R
@@ -17,23 +18,29 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MovieDescription : AppCompatActivity() {
+
+    lateinit var data : Result
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.movie_overview)
 
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        val call = request.getCast(getString(R.string.api_key))
+        //val call = request.getCast(getString(R.string.api_key))
 
         val intent = intent
+        data = intent.getSerializableExtra("result") as Result
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = intent.getStringExtra("title")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val photo: ImageView = findViewById(R.id.movie_poster)
-        val poster = intent.getStringExtra("movie_poster")
+        val poster = data.poster_path
+        //val id: String? = intent.getStringExtra("movie_id")
+        val call = request.getCast( data.id, getString(R.string.api_key))
 
-        movie_overview.text = intent.getStringExtra("movie_details")
+        movie_overview.text = data.overview
 
         Glide.with(this).load("https://image.tmdb.org/t/p/w500$poster").into(photo)
 
@@ -48,10 +55,9 @@ class MovieDescription : AppCompatActivity() {
                     my_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(context, 2)
-                        adapter = response.body()?.result?.let { CastAdapter(it) }
+                        adapter = response.body()?.cast?.let { CastAdapter(it) }
                     }
-                }
-                else{
+                } else {
                     Toast.makeText(this@MovieDescription, "Error", Toast.LENGTH_SHORT).show()
                 }
             }
