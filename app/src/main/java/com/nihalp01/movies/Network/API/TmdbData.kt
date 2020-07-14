@@ -2,8 +2,7 @@ package com.nihalp01.movies.Network.API
 
 
 data class Movies(
-    val results: List<Result>,
-    val MovieCastList: List<Cast>
+    val results: List<Result>
 )
 
 data class Result(
@@ -16,10 +15,4 @@ data class Result(
     val vote_count: Int,
     val original_language: String,
     val popularity: Number
-)
-data class Cast(
-    val character: String,
-    val gender: String,
-    val name: String,
-    val profile_path: String
 )

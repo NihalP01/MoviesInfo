@@ -14,6 +14,6 @@ interface TmdbEndpoints {
     fun getLatest(@Query("api_key") key: String) : Call<Movies>
     @GET("/3/movie/upcoming")
     fun getUpcoming(@Query("api_key") key: String) : Call<Movies>
-    @GET("/movie/{movie_id}/credits")
-    fun getCast(@Query("api_key") key: String, @Path("movie_id") movieId: String) : Call<Movies>
+    @GET("/3/movie/813/credits")
+    fun getCast(@Query("api_key") key: String) : Call<CastList>
 }

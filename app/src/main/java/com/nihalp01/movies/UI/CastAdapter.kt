@@ -1,6 +1,7 @@
 package com.nihalp01.movies.UI
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,12 @@ import com.bumptech.glide.Glide
 import com.nihalp01.movies.Network.API.Cast
 import com.nihalp01.movies.R
 
-class CastAdapter(private val castList: List<Cast>): RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
+class CastAdapter(private val castList: List<Cast>) :
+    RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_cast, parent, false)
-        return CastViewHolder(view)
+        val view: View? = LayoutInflater.from(parent.context).inflate(R.layout.item_cast, parent, false)
+        return CastViewHolder(view!!)
     }
 
     override fun getItemCount() = castList.size
@@ -24,7 +26,7 @@ class CastAdapter(private val castList: List<Cast>): RecyclerView.Adapter<CastAd
         return holder.bind(castList[position])
     }
 
-    class CastViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class CastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val name: TextView = itemView.findViewById(R.id.cast_name)
         private val character: TextView = itemView.findViewById(R.id.cast_character)
         private val gender: TextView = itemView.findViewById(R.id.cast_gender)
@@ -32,7 +34,8 @@ class CastAdapter(private val castList: List<Cast>): RecyclerView.Adapter<CastAd
 
         @SuppressLint("SetTextI18n")
         fun bind(castlist: Cast) {
-            Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w500${castlist.profile_path}").into(image)
+            Glide.with(itemView.context)
+                .load("https://image.tmdb.org/t/p/w500${castlist.profile_path}").into(image)
             name.text = "Name: ${castlist.name}"
             character.text = "Character: ${castlist.character}"
             gender.text = "Gender: ${castlist.gender}"

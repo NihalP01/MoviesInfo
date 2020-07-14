@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.nihalp01.movies.Network.API.Movies
+import com.nihalp01.movies.Network.API.CastList
 import com.nihalp01.movies.Network.API.TmdbEndpoints
 import com.nihalp01.movies.Network.ServiceBuilder
 import com.nihalp01.movies.R
@@ -34,25 +34,24 @@ class MovieDescription : AppCompatActivity() {
         val poster = intent.getStringExtra("movie_poster")
 
         movie_overview.text = intent.getStringExtra("movie_details")
+
         Glide.with(this).load("https://image.tmdb.org/t/p/w500$poster").into(photo)
 
-        call.enqueue(object: Callback<Movies>{
-            override fun onFailure(call: Call<Movies>, t: Throwable) {
+        call.enqueue(object : Callback<CastList> {
+            override fun onFailure(call: Call<CastList>, t: Throwable) {
                 Toast.makeText(this@MovieDescription, t.message, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
-                if (response.isSuccessful){
+            override fun onResponse(call: Call<CastList>, response: Response<CastList>) {
+                if (response.isSuccessful) {
                     my_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(context, 2)
-                        adapter = CastAdapter(response.body()!!.MovieCastList)
+                        adapter = CastAdapter(response.body()!!.result)
                     }
                 }
             }
-
         })
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
