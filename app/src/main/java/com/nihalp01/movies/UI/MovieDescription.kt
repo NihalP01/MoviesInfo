@@ -19,11 +19,12 @@ import retrofit2.Response
 
 class MovieDescription : AppCompatActivity() {
 
-    lateinit var data : Result
+    lateinit var data: Result
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.movie_overview)
+
 
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
         //val call = request.getCast(getString(R.string.api_key))
@@ -31,14 +32,18 @@ class MovieDescription : AppCompatActivity() {
         val intent = intent
         data = intent.getSerializableExtra("result") as Result
 
+        btn_play.setOnClickListener {
+            Toast.makeText(this@MovieDescription, "Playing Trailer", Toast.LENGTH_SHORT).show()
+        }
+
         setSupportActionBar(toolbar)
-        supportActionBar?.title = intent.getStringExtra("title")
+        supportActionBar?.title = data.title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val photo: ImageView = findViewById(R.id.movie_poster)
         val poster = data.poster_path
         //val id: String? = intent.getStringExtra("movie_id")
-        val call = request.getCast( data.id, getString(R.string.api_key))
+        val call = request.getCast(data.id, getString(R.string.api_key))
 
         movie_overview.text = data.overview
 
@@ -51,14 +56,11 @@ class MovieDescription : AppCompatActivity() {
 
             override fun onResponse(call: Call<CastList>, response: Response<CastList>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@MovieDescription, "Working", Toast.LENGTH_SHORT).show()
                     my_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(context, 2)
-                        adapter = response.body()?.cast?.let { CastAdapter(it) }
+                        adapter = CastAdapter(context, response.body()!!.cast)
                     }
-                } else {
-                    Toast.makeText(this@MovieDescription, "Error", Toast.LENGTH_SHORT).show()
                 }
             }
         })

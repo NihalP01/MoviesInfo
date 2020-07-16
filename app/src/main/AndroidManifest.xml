@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.MovieDescription" />
+        <activity android:name=".UI.CastDescription"/>
     </application>
 
 </manifest>

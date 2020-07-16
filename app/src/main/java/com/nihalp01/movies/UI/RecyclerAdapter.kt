@@ -17,8 +17,6 @@ import com.nihalp01.movies.R
 class MoviesAdapter(private val context: Context, private val movies: List<Result>) :
     RecyclerView.Adapter<MoviesViewHolder>() {
 
-    private val onItemClicked: ((Result) -> Unit)? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movies_item, parent, false)
         return MoviesViewHolder(view)
@@ -29,13 +27,8 @@ class MoviesAdapter(private val context: Context, private val movies: List<Resul
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val list: Result = movies[position]
         holder.itemView.setOnClickListener {
-            //onItemClicked?.invoke(movies[position])
             val intent = Intent(context, MovieDescription::class.java)
-            /*intent.putExtra("movie_details", list.overview)
-            intent.putExtra("title", list.title)
-            intent.putExtra("movie_poster", list.poster_path)*/
-            //intent.putExtra("movie_id", list.id)
-            val bundle : Bundle = Bundle()
+            val bundle: Bundle = Bundle()
             bundle.putSerializable("result", list)
             intent.putExtras(bundle)
             context.startActivity(intent)

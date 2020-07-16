@@ -23,7 +23,7 @@ class FragmentLatest: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_latest, container, false)
+        val view: View? = inflater.inflate(R.layout.fragment_latest, container, false)
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
         val call = request.getLatest(getString(R.string.api_key))
 
