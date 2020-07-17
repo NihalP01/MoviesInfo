@@ -32,7 +32,7 @@
         android:fillViewport="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0">
@@ -58,14 +58,25 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/ic_play"
+                android:contentDescription="Watch Trailer"
                 app:layout_constraintBottom_toBottomOf="@+id/movie_poster"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/movie_poster"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.13999999"
-                android:contentDescription="Watch Trailer" />
+                app:layout_constraintVertical_bias="0.13999999" />
+
+            <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                android:id="@+id/video_player"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Overview: "
@@ -100,8 +111,19 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.825"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movie_overview" />
+
+            <ProgressBar
+                android:id="@+id/cast_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/my_recycler"
+                app:layout_constraintVertical_bias="0.16000003" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/my_recycler"
@@ -110,9 +132,10 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView3"
-                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintVertical_bias="0.0"
                 tools:listitem="@layout/item_cast" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

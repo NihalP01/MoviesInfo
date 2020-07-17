@@ -1,4 +1,4 @@
-package com.nihalp01.movies.UI
+package com.nihalp01.movies.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nihalp01.movies.Network.API.Result
 import com.nihalp01.movies.R
+import com.nihalp01.movies.UI.MovieDescription
 
 class MoviesAdapter(private val context: Context, private val movies: List<Result>) :
     RecyclerView.Adapter<MoviesViewHolder>() {

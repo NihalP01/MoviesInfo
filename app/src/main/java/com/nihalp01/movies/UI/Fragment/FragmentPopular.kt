@@ -11,7 +11,7 @@ import com.nihalp01.movies.Network.API.Movies
 import com.nihalp01.movies.Network.API.TmdbEndpoints
 import com.nihalp01.movies.Network.ServiceBuilder
 import com.nihalp01.movies.R
-import com.nihalp01.movies.UI.MoviesAdapter
+import com.nihalp01.movies.Adapters.MoviesAdapter
 import kotlinx.android.synthetic.main.fragment_popular.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,7 +37,10 @@ class FragmentPopular : Fragment() {
                     my_progressbar?.visibility = View.GONE
                     recyclerView?.apply {
                         setHasFixedSize(true)
-                        adapter = MoviesAdapter(context, response.body()!!.results)
+                        adapter = MoviesAdapter(
+                            context,
+                            response.body()!!.results
+                        )
                         layoutManager = LinearLayoutManager(context)
                     }
                 }

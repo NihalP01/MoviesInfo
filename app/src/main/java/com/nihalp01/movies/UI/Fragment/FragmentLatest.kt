@@ -11,7 +11,7 @@ import com.nihalp01.movies.Network.API.Movies
 import com.nihalp01.movies.Network.API.TmdbEndpoints
 import com.nihalp01.movies.Network.ServiceBuilder
 import com.nihalp01.movies.R
-import com.nihalp01.movies.UI.MoviesAdapter
+import com.nihalp01.movies.Adapters.MoviesAdapter
 import kotlinx.android.synthetic.main.fragment_latest.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,7 +37,12 @@ class FragmentLatest: Fragment() {
                     my_progressbar_latest?.visibility = View.GONE
                     recyclerView_latest?.apply {
                         setHasFixedSize(true)
-                        adapter = response.body()?.results?.let { MoviesAdapter(context, it) }
+                        adapter = response.body()?.results?.let {
+                            MoviesAdapter(
+                                context,
+                                it
+                            )
+                        }
                         layoutManager = LinearLayoutManager(context)
                     }
                 }
