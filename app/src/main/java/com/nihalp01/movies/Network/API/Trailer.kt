@@ -5,3 +5,8 @@ data class Trailerarray(
     val name: String?
 )
 
+data class Trailer(
+    val results: List<Trailerarray>
+)
+
+

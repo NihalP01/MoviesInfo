@@ -65,15 +65,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.13999999" />
 
-            <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-                android:id="@+id/video_player"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:visibility="invisible"
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Play Trailer"
+                android:gravity="center"
+                android:textColor="@android:color/black"
                 app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/movie_poster"
+                app:layout_constraintTop_toBottomOf="@+id/btn_play"
+                app:layout_constraintVertical_bias="0.0" />
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView4"
@@ -135,7 +139,6 @@
                 app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView3"
-                app:layout_constraintVertical_bias="0.0"
                 tools:listitem="@layout/item_cast" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,5 +19,5 @@ interface TmdbEndpoints {
     @GET("/3/movie/{movie_id}/credits")
     fun getCast( @Path("movie_id") movie_id: Int, @Query("api_key") key: String) : Call<CastList>
     @GET("/3/movie/{movie_id}/videos")
-    fun getTrailer(@Path("movie_id") movie_id: Int, @Query("api_key") key: String) : Call<Trailerarray>
+    fun getTrailer(@Path("movie_id") movie_id: Int, @Query("api_key") key: String) : Call<Trailer>
 }

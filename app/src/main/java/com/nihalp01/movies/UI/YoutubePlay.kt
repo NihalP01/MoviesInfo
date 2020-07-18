@@ -1,7 +1,6 @@
 package com.nihalp01.movies.UI
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -9,7 +8,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.nihalp01.movies.Network.API.Result
 import com.nihalp01.movies.Network.API.TmdbEndpoints
-import com.nihalp01.movies.Network.API.Trailerarray
+import com.nihalp01.movies.Network.API.Trailer
 import com.nihalp01.movies.Network.ServiceBuilder
 import com.nihalp01.movies.R
 import kotlinx.android.synthetic.main.youtube_activity.*
@@ -28,18 +27,19 @@ class YoutubePlay : YouTubeBaseActivity() {
         val intent = intent
         data = intent.getSerializableExtra("movie_id") as Result
 
-        val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        val call = request.getTrailer( data.id , getString(R.string.api_key))
 
-        call.enqueue(object : Callback<Trailerarray> {
-            override fun onFailure(call: Call<Trailerarray>, t: Throwable) {
+        val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
+        val call = request.getTrailer(data.id, getString(R.string.api_key))
+
+        call.enqueue(object : Callback<Trailer> {
+            override fun onFailure(call: Call<Trailer>, t: Throwable) {
                 Toast.makeText(this@YoutubePlay, t.message, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<Trailerarray>, response: Response<Trailerarray>) {
+            override fun onResponse(call: Call<Trailer>, response: Response<Trailer>) {
                 if (response.isSuccessful) {
 
-                    val mkey = response.body()?.key.toString()
+                    val key = response.body()?.results
 
                     youtube_player_fragment.initialize("AIzaSyArVdtwrfe_B0xK6UZoDdzy4hTmhBlunnc",
                         object : YouTubePlayer.OnInitializedListener {
@@ -49,7 +49,7 @@ class YoutubePlay : YouTubeBaseActivity() {
                                 p2: Boolean
                             ) {
                                 if (!p2) {
-                                    p1!!.loadVideo(mkey)
+                                    p1!!.loadVideo(key?.get(0)?.key)
                                     p1.setPlayerStyle(
                                         YouTubePlayer.PlayerStyle.DEFAULT
                                     )
@@ -72,3 +72,4 @@ class YoutubePlay : YouTubeBaseActivity() {
         })
     }
 }
+
