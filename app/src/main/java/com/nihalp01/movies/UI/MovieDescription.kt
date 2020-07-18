@@ -38,11 +38,7 @@ class MovieDescription : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         btn_play.setOnClickListener {
-            val p = Intent(this, YoutubePlay::class.java)
-            val bundle = Bundle()
-            bundle.putSerializable("movie_id", data)
-            p.putExtras(bundle)
-            startActivity(p)
+             myIntent()
         }
 
 
@@ -76,6 +72,13 @@ class MovieDescription : AppCompatActivity() {
         })
     }
 
+  fun myIntent(){
+      val p = Intent(this, YoutubePlay::class.java)
+      val bundle = Bundle()
+      bundle.putSerializable("movie_id", data)
+      p.putExtras(bundle)
+      startActivity(p)
+  }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
