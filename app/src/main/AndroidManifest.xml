@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".UI.MovieDescription" />
         <activity android:name=".UI.CastDescription"/>
-        <activity android:name=".UI.Fragment.YoutubePlay"/>
+        <activity android:name=".UI.YoutubePlay"/>
     </application>
 
 </manifest>

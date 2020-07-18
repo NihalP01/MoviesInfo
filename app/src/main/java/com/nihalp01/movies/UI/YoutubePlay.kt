@@ -1,4 +1,4 @@
-package com.nihalp01.movies.UI.Fragment
+package com.nihalp01.movies.UI
 
 import android.os.Bundle
 import android.util.Log
@@ -26,10 +26,10 @@ class YoutubePlay : YouTubeBaseActivity() {
         setContentView(R.layout.youtube_activity)
 
         val intent = intent
-        val movieId = intent.getIntExtra("movieId",0)
+        data = intent.getSerializableExtra("movie_id") as Result
 
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        val call = request.getTrailer(movieId , getString(R.string.api_key))
+        val call = request.getTrailer( data.id , getString(R.string.api_key))
 
         call.enqueue(object : Callback<Trailerarray> {
             override fun onFailure(call: Call<Trailerarray>, t: Throwable) {
@@ -39,7 +39,7 @@ class YoutubePlay : YouTubeBaseActivity() {
             override fun onResponse(call: Call<Trailerarray>, response: Response<Trailerarray>) {
                 if (response.isSuccessful) {
 
-                    val key = response.body()?.key
+                    val mkey = response.body()?.key.toString()
 
                     youtube_player_fragment.initialize("AIzaSyArVdtwrfe_B0xK6UZoDdzy4hTmhBlunnc",
                         object : YouTubePlayer.OnInitializedListener {
@@ -49,8 +49,8 @@ class YoutubePlay : YouTubeBaseActivity() {
                                 p2: Boolean
                             ) {
                                 if (!p2) {
-                                    p1?.loadVideo(key)
-                                    p1?.setPlayerStyle(
+                                    p1!!.loadVideo(mkey)
+                                    p1.setPlayerStyle(
                                         YouTubePlayer.PlayerStyle.DEFAULT
                                     )
                                     progressBar.visibility = View.GONE
@@ -69,7 +69,6 @@ class YoutubePlay : YouTubeBaseActivity() {
                         })
                 }
             }
-
         })
     }
 }

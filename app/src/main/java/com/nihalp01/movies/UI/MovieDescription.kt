@@ -1,6 +1,5 @@
 package com.nihalp01.movies.UI
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,14 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.google.android.exoplayer2.util.Log
 import com.nihalp01.movies.Adapters.CastAdapter
 import com.nihalp01.movies.Network.API.CastList
 import com.nihalp01.movies.Network.API.Result
 import com.nihalp01.movies.Network.API.TmdbEndpoints
 import com.nihalp01.movies.Network.ServiceBuilder
 import com.nihalp01.movies.R
-import com.nihalp01.movies.UI.Fragment.YoutubePlay
 import kotlinx.android.synthetic.main.movie_overview.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,7 +39,9 @@ class MovieDescription : AppCompatActivity() {
 
         btn_play.setOnClickListener {
             val p = Intent(this, YoutubePlay::class.java)
-            p.putExtra("movieId", data.id)
+            val bundle = Bundle()
+            bundle.putSerializable("movie_id", data)
+            p.putExtras(bundle)
             startActivity(p)
         }
 

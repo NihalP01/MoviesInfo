@@ -13,9 +13,3 @@ data class Cast(
 ) : Serializable
 
 data class CastList(val cast: List<Cast>)
-
-
-data class Trailerarray(
-    val key:String,
-    val name:String
-)
