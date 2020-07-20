@@ -3,7 +3,9 @@ package com.nihalp01.movies.UI
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -46,17 +48,27 @@ class CastDescription : AppCompatActivity() {
             override fun onResponse(call: Call<CastDetails>, response: Response<CastDetails>) {
                 if (response.isSuccessful) {
                     info_cast_name.text = "${response.body()?.name}"
-                    info_biography.text = response.body()?.biography
                     info_birth_place.text =
                         "Birth Place: ${response.body()?.place_of_birth.toString()}"
                     info_birthday.text = "Birth date: ${response.body()?.birthday.toString()}"
-                    info_cast_age.text = ";_;"
                     info_knownfor.text = "Known for: ${response.body()?.known_for_department}"
                     info_popularity.text = "Popularity: ${response.body()?.popularity.toString()}"
                     Glide.with(this@CastDescription)
                         .load("https://image.tmdb.org/t/p/w500${response.body()?.profile_path}")
                         .into(info_cast_image)
-                    info_deathday.text = "Death date: ${response.body()?.deathday.toString()}"
+                    if(response.body()?.deathday !== null){
+                        info_deathday.text = "Death date: ${response.body()?.deathday.toString()}"
+                    }
+                    else{
+                        info_deathday.visibility = View.GONE
+                    }
+                    if (response.body()?.biography != null){
+                        info_biography.text = response.body()?.biography
+                        Log.d("myTag", "${response.body()?.biography}")
+                    }
+                    else{
+                        info_biography.text = "Bio details are not available"
+                    }
                 }
             }
         })

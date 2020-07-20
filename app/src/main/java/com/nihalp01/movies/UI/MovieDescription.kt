@@ -1,5 +1,6 @@
 package com.nihalp01.movies.UI
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -24,6 +25,7 @@ class MovieDescription : AppCompatActivity() {
 
     lateinit var data: Result
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.movie_overview)
@@ -48,6 +50,9 @@ class MovieDescription : AppCompatActivity() {
         val call = request.getCast(data.id, getString(R.string.api_key))
 
         movie_overview.text = data.overview
+        movie_popularity.text = "${data.popularity} %"
+        votes.text = data.vote_count.toString()+" ❤"
+        rating.text = data.vote_average.toString()+" ★"
 
         Glide.with(this).load("https://image.tmdb.org/t/p/w500$poster").into(photo)
 
@@ -76,6 +81,7 @@ class MovieDescription : AppCompatActivity() {
       val p = Intent(this, YoutubePlay::class.java)
       val bundle = Bundle()
       bundle.putSerializable("movie_id", data)
+      p.putExtra("force_fullscreen", true)
       p.putExtras(bundle)
       startActivity(p)
   }

@@ -50,8 +50,10 @@ class YoutubePlay : YouTubeBaseActivity() {
                             ) {
                                 if (!p2) {
                                     p1!!.loadVideo(key?.get(0)?.key)
+                                    p1.setFullscreen(true)
                                     p1.setPlayerStyle(
                                         YouTubePlayer.PlayerStyle.DEFAULT
+
                                     )
                                     progressBar.visibility = View.GONE
                                 }
