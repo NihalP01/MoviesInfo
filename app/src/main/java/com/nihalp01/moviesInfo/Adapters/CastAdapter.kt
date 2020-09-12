@@ -1,4 +1,4 @@
-package com.nihalp01.movies.Adapters
+package com.nihalp01.moviesInfo.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,9 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.nihalp01.movies.Network.API.Cast
-import com.nihalp01.movies.R
-import com.nihalp01.movies.UI.CastDescription
+import com.nihalp01.moviesInfo.Network.API.Cast
+import com.nihalp01.moviesInfo.R
+import com.nihalp01.moviesInfo.UI.CastDescription
 
 class CastAdapter(val context: Context, private val castList: List<Cast>) :
     RecyclerView.Adapter<CastViewHolder>() {

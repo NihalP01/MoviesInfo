@@ -9,6 +9,8 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        app:titleTextColor="#FFFFFF"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +20,7 @@
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="2dp"
         android:background="@drawable/toolbar_dropshadow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +42,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:background="#2C2C2C"
             android:padding="20dp">
 
             <com.google.android.material.textview.MaterialTextView
@@ -49,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Ratings"
+                android:textColor="@android:color/secondary_text_dark"
                 app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
                 app:layout_constraintEnd_toStartOf="@+id/movie_poster"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@android:color/secondary_text_dark"
                 android:text="Votes"
                 app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
                 app:layout_constraintEnd_toStartOf="@+id/movie_poster"
@@ -104,9 +109,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="30.5%"
+                android:textColor="@android:color/holo_green_light"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/holo_green_light"
                 app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
                 app:layout_constraintEnd_toStartOf="@+id/movie_poster"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Popularity"
+                android:textColor="@android:color/secondary_text_dark"
                 app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
                 app:layout_constraintEnd_toStartOf="@+id/movie_poster"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +160,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="Play Trailer"
-                android:textColor="@android:color/black"
+                android:textColor="#E91E63"
                 app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/movie_poster"
@@ -165,10 +171,10 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="12dp"
                 android:text="Overview: "
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,9 +185,10 @@
                 android:id="@+id/movie_overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Movie Description goes here"
                 android:textSize="18sp"
-                android:layout_marginTop="5dp"
+                android:textColor="@android:color/secondary_text_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Cast:"
-                android:textColor="@android:color/black"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -217,7 +224,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/my_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +232,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView3"
                 tools:listitem="@layout/item_cast" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

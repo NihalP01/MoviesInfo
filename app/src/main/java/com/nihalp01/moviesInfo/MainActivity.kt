@@ -1,11 +1,10 @@
-package com.nihalp01.movies
+package com.nihalp01.moviesInfo
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.nihalp01.movies.UI.Fragment.*
+import com.nihalp01.moviesInfo.UI.Fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_about -> {
-                    val fragment = FragmentAbout()
+                    val fragment = FragmentSearch()
                     addFragment(fragment)
                     return@OnNavigationItemSelectedListener true
                 }

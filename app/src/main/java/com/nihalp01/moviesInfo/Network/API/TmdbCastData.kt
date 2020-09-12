@@ -1,11 +1,10 @@
-package com.nihalp01.movies.Network.API
+package com.nihalp01.moviesInfo.Network.API
 
 import java.io.Serializable
 
 data class Cast(
     val cast_id: Int,
     val character: String,
-    val credit_id: String,
     val gender: Int,
     val id: Int,
     val name: String,

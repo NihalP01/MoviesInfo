@@ -1,4 +1,4 @@
-package com.nihalp01.movies.UI.Fragment
+package com.nihalp01.moviesInfo.UI.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nihalp01.movies.Network.API.Movies
-import com.nihalp01.movies.Network.API.TmdbEndpoints
-import com.nihalp01.movies.Network.ServiceBuilder
-import com.nihalp01.movies.R
-import com.nihalp01.movies.Adapters.MoviesAdapter
+import com.nihalp01.moviesInfo.Network.API.Movies
+import com.nihalp01.moviesInfo.Network.API.TmdbEndpoints
+import com.nihalp01.moviesInfo.Network.ServiceBuilder
+import com.nihalp01.moviesInfo.R
+import com.nihalp01.moviesInfo.Adapters.MoviesAdapter
 import kotlinx.android.synthetic.main.fragment_top_rated.*
 import retrofit2.Call
 import retrofit2.Callback

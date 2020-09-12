@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
+        android:background="#FFFFFF"
+
         app:itemIconTint="@drawable/nav_color"
         app:itemTextColor="@drawable/nav_color"
         app:labelVisibilityMode="labeled"
@@ -37,7 +38,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="2dp"
         android:layout_above="@id/bottomNavigationView"
         android:background="@drawable/drop_shadow"
         app:layout_constraintBottom_toBottomOf="@+id/content"

@@ -1,4 +1,4 @@
-package com.nihalp01.movies.Network
+package com.nihalp01.moviesInfo.Network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -1,8 +1,9 @@
-package com.nihalp01.movies.UI
+package com.nihalp01.moviesInfo.UI
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -10,12 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.nihalp01.movies.Adapters.CastAdapter
-import com.nihalp01.movies.Network.API.CastList
-import com.nihalp01.movies.Network.API.Result
-import com.nihalp01.movies.Network.API.TmdbEndpoints
-import com.nihalp01.movies.Network.ServiceBuilder
-import com.nihalp01.movies.R
+import com.nihalp01.moviesInfo.Adapters.CastAdapter
+import com.nihalp01.moviesInfo.Network.API.CastList
+import com.nihalp01.moviesInfo.Network.API.Result
+import com.nihalp01.moviesInfo.Network.API.TmdbEndpoints
+import com.nihalp01.moviesInfo.Network.ServiceBuilder
+import com.nihalp01.moviesInfo.R
 import kotlinx.android.synthetic.main.movie_overview.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +32,6 @@ class MovieDescription : AppCompatActivity() {
         setContentView(R.layout.movie_overview)
 
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        //val call = request.getCast(getString(R.string.api_key))
         val intent = intent
         data = intent.getSerializableExtra("result") as Result
 
@@ -43,14 +43,15 @@ class MovieDescription : AppCompatActivity() {
              myIntent()
         }
 
-
         val photo: ImageView = findViewById(R.id.movie_poster)
         val poster = data.poster_path
-        //val id: String? = intent.getStringExtra("movie_id")
         val call = request.getCast(data.id, getString(R.string.api_key))
 
+        val popularity = " %.2f".format(data.popularity).toDouble()
+        Log.d("myTag", popularity.toString())
+
         movie_overview.text = data.overview
-        movie_popularity.text = "${data.popularity} %"
+        movie_popularity.text = "$popularity %"
         votes.text = data.vote_count.toString()+" ❤"
         rating.text = data.vote_average.toString()+" ★"
 

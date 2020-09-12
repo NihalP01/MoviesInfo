@@ -1,4 +1,4 @@
-package com.nihalp01.movies.UI
+package com.nihalp01.moviesInfo.UI
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -10,16 +10,19 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.nihalp01.movies.Network.API.Cast
-import com.nihalp01.movies.Network.API.CastDetails
-import com.nihalp01.movies.Network.API.TmdbEndpoints
-import com.nihalp01.movies.Network.ServiceBuilder
-import com.nihalp01.movies.R
+import com.nihalp01.moviesInfo.Network.API.Cast
+import com.nihalp01.moviesInfo.Network.API.CastDetails
+import com.nihalp01.moviesInfo.Network.API.TmdbEndpoints
+import com.nihalp01.moviesInfo.Network.ServiceBuilder
+import com.nihalp01.moviesInfo.R
 import kotlinx.android.synthetic.main.cast_description.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class CastDescription : AppCompatActivity() {
 
@@ -51,6 +54,7 @@ class CastDescription : AppCompatActivity() {
                     info_birth_place.text =
                         "Birth Place: ${response.body()?.place_of_birth.toString()}"
                     info_birthday.text = "Birth date: ${response.body()?.birthday.toString()}"
+
                     info_knownfor.text = "Known for: ${response.body()?.known_for_department}"
                     info_popularity.text = "Popularity: ${response.body()?.popularity.toString()}"
                     Glide.with(this@CastDescription)

@@ -1,4 +1,4 @@
-package com.nihalp01.movies
+package com.nihalp01.moviesInfo
 
 import org.junit.Test
 

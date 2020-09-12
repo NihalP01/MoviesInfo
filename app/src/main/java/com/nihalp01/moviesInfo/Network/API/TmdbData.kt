@@ -1,4 +1,4 @@
-package com.nihalp01.movies.Network.API
+package com.nihalp01.moviesInfo.Network.API
 
 import java.io.Serializable
 
