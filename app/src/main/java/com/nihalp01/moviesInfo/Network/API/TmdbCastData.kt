@@ -8,6 +8,7 @@ data class Cast(
     val gender: Int,
     val id: Int,
     val name: String,
+    val birthday: String,
     val profile_path: String
 ) : Serializable
 

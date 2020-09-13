@@ -22,6 +22,8 @@ import retrofit2.Response
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.time.temporal.Temporal
 import java.util.*
 
 class CastDescription : AppCompatActivity() {
@@ -54,6 +56,12 @@ class CastDescription : AppCompatActivity() {
                     info_birth_place.text =
                         "Birth Place: ${response.body()?.place_of_birth.toString()}"
                     info_birthday.text = "Birth date: ${response.body()?.birthday.toString()}"
+
+                    val birthday: String = response.body()?.birthday.toString()
+                    val date = LocalDate.parse(birthday, DateTimeFormatter.ISO_DATE)
+                    val toady = LocalDate.now()
+                    val age = ChronoUnit.YEARS.between(date , toady)
+                    infoAge.text = "$age Years"
 
                     info_knownfor.text = "Known for: ${response.body()?.known_for_department}"
                     info_popularity.text = "Popularity: ${response.body()?.popularity.toString()}"

@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.movie_overview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
 
 class MovieDescription : AppCompatActivity() {
 
@@ -52,6 +54,7 @@ class MovieDescription : AppCompatActivity() {
 
         movie_overview.text = data.overview
         movie_popularity.text = "$popularity %"
+
         votes.text = data.vote_count.toString()+" ❤"
         rating.text = data.vote_average.toString()+" ★"
 
